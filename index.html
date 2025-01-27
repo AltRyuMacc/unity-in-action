@@ -368,18 +368,18 @@
     </div>
     <script>
         const navbarToggle = document.querySelector('.navbar-toggle');
-        const navbarLinks = document.querySelector('.navbar-links');
-
-        navbarToggle.addEventListener('click', () => {
-            navbarToggle.classList.toggle('active');
-            navbarLinks.classList.toggle('active');
-        });
-// Track element and modal elements
+const navbarLinks = document.querySelector('.navbar-links');
 const track = document.getElementById("image-track");
 const modal = document.getElementById("modal");
 const modalImage = document.getElementById("modal-image");
 const modalDescription = document.getElementById("modal-description");
 const closeModal = document.getElementById("close-modal");
+
+// Toggle Navbar for Mobile
+navbarToggle.addEventListener('click', () => {
+    navbarToggle.classList.toggle('active');
+    navbarLinks.classList.toggle('active');
+});
 
 // Handle drag start
 const handleOnDown = (e) => {
@@ -401,8 +401,8 @@ const handleOnMove = (e) => {
     const mouseDelta = parseFloat(track.dataset.mouseDownAt) - clientX;
     const maxDelta = window.innerWidth / 2;
 
-    // Reduce sensitivity on touch devices
-    const sensitivityFactor = e.type === "touchmove" ? 0.5 : 1; // Lower the factor for touch events
+    // Adjust sensitivity for touch devices
+    const sensitivityFactor = e.type === "touchmove" ? 0.5 : 1;
     const percentage = (mouseDelta / maxDelta) * -100 * sensitivityFactor;
 
     const nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage;
@@ -421,14 +421,13 @@ const handleOnMove = (e) => {
     }
 };
 
-
-/* Modal functionality */
+// Modal functionality
 const images = document.querySelectorAll(".image");
 
 images.forEach((image) => {
     image.addEventListener("click", () => {
         modalImage.src = image.src;
-        modalDescription.textContent = image.dataset.description;
+        modalDescription.textContent = image.dataset.description || "Image description not available.";
         modal.style.display = "flex";
     });
 });
@@ -444,18 +443,19 @@ modal.addEventListener("click", (e) => {
     }
 });
 
-/* Event Listeners for dragging */
-// Use passive: false for touchmove to override default scrolling behavior
-window.addEventListener("mousedown", (e) => handleOnDown(e));
-window.addEventListener("touchstart", (e) => handleOnDown(e), { passive: false });
+// Event listeners for dragging
+track.addEventListener("mousedown", (e) => handleOnDown(e));
+track.addEventListener("touchstart", (e) => handleOnDown(e), { passive: false });
 
-window.addEventListener("mouseup", (e) => handleOnUp(e));
-window.addEventListener("touchend", (e) => handleOnUp(e), { passive: false });
+track.addEventListener("mouseup", (e) => handleOnUp(e));
+track.addEventListener("touchend", (e) => handleOnUp(e), { passive: false });
 
-window.addEventListener("mousemove", (e) => handleOnMove(e));
-window.addEventListener("touchmove", (e) => {
-    e.preventDefault(); // Prevent default scroll behavior
-    handleOnMove(e);
+track.addEventListener("mousemove", (e) => handleOnMove(e));
+track.addEventListener("touchmove", (e) => {
+    if (track.dataset.mouseDownAt !== "0") {
+        e.preventDefault(); // Prevent scroll only when dragging
+        handleOnMove(e);
+    }
 }, { passive: false });
 
     </script>
