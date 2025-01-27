@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Gallery</title>
+    <link rel="shortcut icon" href="uia-logo.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            margin-right: 50px;
+        }
+
+        .navbar-links li {
+            margin: 0 15px;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #00bcd4;
+        }
+
+        .navbar-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #333;
+                display: none;
+            }
+
+            .navbar-links.active {
+                display: flex;
+            }
+
+            .navbar-links li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .navbar-toggle {
+                display: block;
+                margin-right: 50px;
+            }
+        }
+
+        #main-header {
+            margin-top: 60px; /* Account for navbar height */
+            width: 100%;
+            height: 60vh;
+            background: url('header.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            user-select: none;
+        }
+
+        #main-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 1rem;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            margin: 0 0 1rem;
+            font-weight: bold;
+        }
+
+        .header-content p {
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .gallery-container {
+            position: relative;
+            height: 60vh;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        #image-track {
+            display: flex;
+            gap: 4vmin;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(0%, -50%);
+            user-select: none;
+        }
+
+        #image-track > .image {
+            width: 40vmin;
+            height: 56vmin;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #image-track > .image:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background-color: #24262b;
+            padding: 70px 0;
+            text-align: center;
+            height: 50px;
+        }
+
+        .footer-col h4 {
+            font-size: 20px;
+            color: #ffffff;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        .footer-col h4::before {
+            content: '';
+            background-color: green;
+            height: 2px;
+            width: 50px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .footer-col .social-links a {
+            display: inline-block;
+            height: 45px;
+            width: 45px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 0 10px 10px 0;
+            text-align: center;
+            line-height: 45px;
+            border-radius: 50%;
+            color: #ffffff;
+            transition: all 0.5s ease;
+        }
+
+        .footer-col .social-links a:hover {
+            color: #24262b;
+            background-color: #ffffff;
+            transform: scale(1.2);
+        }
+
+        .container5{
+            margin-top: -50px;
+        }
+
+        @media (max-width: 574px) {
+            .footer-col {
+                width: 100%;
+            }
+        }
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            overflow: hidden;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevent content overflow */
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+        #modal-content img {
+    width: 100%;
+    max-height: 60vh; /* Ensure the image does not exceed viewport height */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    object-fit: contain; /* Maintain aspect ratio */
+}
+
+        #modal-description {
+    color: white;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 20vh; /* Limit description height for readability */
+    padding: 0 10px;
+}
+
+        #close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #close-modal:hover {
+            color: red;
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            #image-track > .image {
+                width: 60vmin;
+                height: 84vmin;
+            }
+
+            #modal-content {
+        max-width: 95vw;
+        max-height: 90vh;
+    }
+
+    #modal-description {
+        font-size: 14px;
+        margin-top: 10px;
+        max-height: 15vh; /* Smaller max height for mobile */
+    }
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="navbar-logo">
+            <img src="uia-logo.png" alt="Unity in Action Logo"> Unity in Action
+        </a>
+        <button class="navbar-toggle" aria-label="Toggle Navigation Menu">&#9776;</button>
+        <ul class="navbar-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#vision-mission">Vision & Mission</a></li>
+            <li><a href="#past-projects">Past Projects</a></li>
+            <li><a href="#scientific-work">Scientific Work</a></li>
+            <li><a href="#members">Members</a></li>
+        </ul>
+    </nav>
+    <header id="main-header">
+        <div class="header-content">
+            <h1>Unity In Action</h1>
+            <p>Our Home, Our Duty: Unity In Action!</p>
+        </div>
+    </header>
+    <div class="gallery-container">
+        <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+        <img class="image" src="https://images.unsplash.com/photo-1524781289445-ddf8f5695861?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" draggable="false" />
+        <img class="image" src="https://images.unsplash.com/photo-1610194352361-4c81a6a8967e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80" draggable="false" />
+        <img class="image" src="https://images.unsplash.com/photo-1618202133208-2907bebba9e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" draggable="false" />
+        <img class="image" src="https://images.unsplash.com/photo-1495805442109-bf1cf975750b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" draggable="false" />
+        <img class="image" src="https://images.unsplash.com/photo-1548021682-1720ed403a5b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" draggable="false" />
+        <img class="image" src="https://images.unsplash.com/photo-1496753480864-3e588e0269b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2134&q=80" draggable="false" />
+        <img class="image" src="https://images.unsplash.com/photo-1613346945084-35cccc812dd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1759&q=80" draggable="false" />
+        <img class="image" src="https://images.unsplash.com/photo-1516681100942-77d8e7f9dd97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" draggable="false" />
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container5">
+            <div class="row5">
+                <div class="footer-col">
+                    <h4>Media Kami</h4>
+                    <div class="social-links">
+                        <a href="" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </footer>
+    <div id="modal">
+        <div id="modal-content">
+            <button id="close-modal">&times;</button>
+            <img id="modal-image" src="" alt="">
+            <div id="modal-description"></div>
+        </div>
+    </div>
+    <script>
+const navbarToggle = document.querySelector('.navbar-toggle');
+const navbarLinks = document.querySelector('.navbar-links');
+const track = document.getElementById("image-track");
+const modal = document.getElementById("modal");
+const modalImage = document.getElementById("modal-image");
+const modalDescription = document.getElementById("modal-description");
+const closeModal = document.getElementById("close-modal");
+
+// Toggle Navbar for Mobile
+navbarToggle.addEventListener('click', () => {
+    navbarToggle.classList.toggle('active');
+    navbarLinks.classList.toggle('active');
+});
+
+// Handle drag start
+const handleOnDown = (e) => {
+    if (modal.style.display === "flex") return; // Prevent drag if modal is open
+    track.dataset.mouseDownAt = e.clientX || e.touches[0].clientX; // Support touch events
+    track.dataset.isDragging = "true";
+};
+
+// Handle drag end
+const handleOnUp = () => {
+    track.dataset.mouseDownAt = "0";
+    track.dataset.prevPercentage = track.dataset.percentage;
+    track.dataset.isDragging = "false";
+};
+
+// Handle drag move
+const handleOnMove = (e) => {
+    if (track.dataset.mouseDownAt === "0" || modal.style.display === "flex" || track.dataset.isDragging !== "true") {
+        return; // Prevent dragging if modal is open or no drag started
+    }
+
+    const clientX = e.clientX || e.touches[0].clientX; // Support touch events
+    const mouseDelta = parseFloat(track.dataset.mouseDownAt) - clientX;
+    const maxDelta = window.innerWidth / 2;
+
+    // Adjust sensitivity for touch devices
+    const sensitivityFactor = e.type === "touchmove" ? 0.5 : 1;
+    const percentage = (mouseDelta / maxDelta) * -100 * sensitivityFactor;
+
+    const nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage;
+    const nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
+
+    track.dataset.percentage = nextPercentage;
+
+    track.style.transform = `translate(${nextPercentage}%, -50%)`;
+
+    for (const image of track.getElementsByClassName("image")) {
+        image.style.objectPosition = `${100 + nextPercentage}% center`;
+    }
+};
+
+// Modal functionality
+const images = document.querySelectorAll(".image");
+
+images.forEach((image) => {
+    image.addEventListener("click", () => {
+        modalImage.src = image.src;
+        modalDescription.textContent = image.dataset.description || "Image description not available.";
+        modal.style.display = "flex";
+    });
+});
+
+// Close modal
+closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+// Event listeners for dragging
+track.addEventListener("mousedown", (e) => handleOnDown(e));
+track.addEventListener("touchstart", (e) => handleOnDown(e), { passive: true });
+
+track.addEventListener("mouseup", (e) => handleOnUp(e));
+track.addEventListener("touchend", (e) => handleOnUp(e), { passive: true });
+
+track.addEventListener("mousemove", (e) => handleOnMove(e));
+track.addEventListener("touchmove", (e) => {
+    if (track.dataset.mouseDownAt !== "0") {
+        handleOnMove(e);
+    }
+}, { passive: false });
+
+// Ensure scrolling works on touch devices
+document.addEventListener("touchstart", (e) => {
+    if (track.dataset.isDragging === "true") {
+        e.preventDefault(); // Prevent scroll only when dragging
+    }
+}, { passive: false });
+
+document.addEventListener("touchmove", (e) => {
+    if (track.dataset.isDragging === "true") {
+        e.preventDefault(); // Prevent scroll only when dragging
+    }
+}, { passive: false });
+
+    </script>
+</body>
+</html>
