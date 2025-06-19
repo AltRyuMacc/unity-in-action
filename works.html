@@ -894,37 +894,6 @@
                 navbarLinks.classList.remove('active');
             }
         });
-        function selectColor(inputId, colorName, element) {
-            document.getElementById(inputId).value = colorName;
-            const parent = element.parentElement;
-            const siblings = parent.querySelectorAll('.color-option');
-            siblings.forEach(sib => sib.classList.remove('selected'));
-            element.classList.add('selected');
-        }
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const selectedFeatures = [];
-            document.querySelectorAll('input[name="features"]:checked').forEach(checkbox => {
-                selectedFeatures.push(checkbox.value);
-            });
-            const exteriorColor = document.getElementById('exteriorColor').value;
-            const interiorTrim = document.getElementById('interiorTrim').value;
-            if (!exteriorColor) {
-                alert('Please select an exterior color');
-                return;
-            }
-            if (!interiorTrim) {
-                alert('Please select an interior trim');
-                return;
-            }
-            alert('Thank you for your order! Our team will contact you shortly to confirm the details.');
-            this.reset();
-            document.querySelectorAll('.color-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            document.getElementById('exteriorColor').value = '';
-            document.getElementById('interiorTrim').value = '';
-        });
     </script>
 </body>
 </html>
