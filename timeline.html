@@ -340,7 +340,7 @@ body::before {
         .right-container {
             left: 50%;
         }
-        .container img {
+        .container .img {
             position: absolute;
             width: 40px;
             border-radius: 50%;
@@ -348,7 +348,7 @@ body::before {
             top: 32px;
             z-index: 10;
         }
-        .right-container img {
+        .right-container .img {
             left: -20px;
         }
         .timeline::after {
@@ -412,7 +412,7 @@ body::before {
             .right-container{
                 left: 0;
             }
-            .left-container img, .right-container img{
+            .left-container .img, .right-container .img{
                 left: 10px;
             }
             .left-container-arrow, .right-container-arrow{
@@ -421,6 +421,18 @@ body::before {
                 left: -15px;
             }
         }
+        .article-image{
+            width: 90%;
+            height: 100%
+        }
+        .article-image:hover{
+            cursor: pointer;
+            animation: upScale 2s ease-in-out infinite; 
+        }
+        @keyframes upScale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+}
     </style>
 </head>
 <body>
@@ -445,101 +457,101 @@ body::before {
     </header>
 <div class="timeline">
         <div class="container left-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                 <h2>Eco-Innovation</h2>
                 <small>Larfa in Vitro 2023</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="left-container-arrow"></span>
             </div>
         </div>
         <div class="container right-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                 <h2>Sumpah Pemuda</h2>
                 <small>October 2023</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="right-container-arrow"></span>
             </div>
         </div>
         <div class="container left-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                 <h2>Rooting For Change</h2>
                 <small>June 2024</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="left-container-arrow"></span>
             </div>
         </div>
         <div class="container right-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                 <h2>Earth Day</h2>
                 <small>2024</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="right-container-arrow"></span>
             </div>
         </div>
         <div class="container left-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                <h2>Operation True Trash</h2>
                 <small>P5 Activities 2024</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="left-container-arrow"></span>
             </div>
         </div>
         <div class="container right-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                 <h2>Diet Plastic</h2>
                 <small>P5 Activities 2024</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="right-container-arrow"></span>
             </div>
         </div>
         <div class="container left-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                 <h2>Dracaena Trifasciata</h2>
                 <small>P5 Activities 2024</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="left-container-arrow"></span>
             </div>
         </div>
         <div class="container right-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                 <h2>Eco-Vigilante</h2>
                 <small>P5 Activities 2024</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="right-container-arrow"></span>
             </div>
         </div>
         <div class="container left-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                 <h2>Energy WISE Poster Campaign</h2>
                 <small>P5 Activities 2024</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="left-container-arrow"></span>
             </div>
         </div>
         <div class="container right-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                 <h2>UiA Goes to ATMI Recycling Center</h2>
                 <small>2024</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="right-container-arrow"></span>
             </div>
         </div>
         <div class="container left-container">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" class="img">
             <div class="text-box">
                 <h2>5th Anniversary of Eco-Enzyme Nusantara</h2>
                 <small>2020-2021</small>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae dolores impedit et, veniam unde quia blanditiis.</p>
+                <p><img src="white.png" class="article-image"></p>
                 <span class="left-container-arrow"></span>
             </div>
         </div>
