@@ -433,8 +433,8 @@
             }
 
             #image-track > .image {
-                width: 35vmin;
-                height: 49vmin;
+                width: 50vmin;
+                height: 80vmin;
             }
 
             .header-content h1 {
@@ -466,8 +466,8 @@
             }
 
             #image-track > .image {
-                width: 30vmin;
-                height: 42vmin;
+                width: 50vmin;
+                height: 100vmin;
             }
 
             .header-content h1 {
@@ -500,6 +500,122 @@
                 transform: none;
             }
         }
+        .profiles-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c3a20 100%);
+    padding: 80px 20px;
+    color: var(--text-light);
+}
+
+.section-title {
+    text-align: center;
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: var(--accent-color);
+    letter-spacing: 0.2rem;
+}
+
+.profile-grid {
+    display: grid;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.teacher-profile {
+    grid-template-columns: 1fr;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(106, 133, 92, 0.3);
+}
+
+.leaders-section {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.pics-section {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.builders-writers-section {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(106, 133, 92, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 30px rgba(106, 133, 92, 0.2);
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 3px solid var(--accent-color);
+    transition: transform 0.3s ease;
+}
+
+.teacher-profile .profile-image {
+    width: 150px;
+    height: 150px;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+}
+
+.profile-name {
+    font-family: var(--heading-font);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.profile-role {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.profile-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+}
+
+.section-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    margin: 60px 0;
+}
+
+@media (max-width: 768px) {
+    .section-title { font-size: 2rem; }
+    .profile-image { width: 100px; height: 100px; }
+    .teacher-profile .profile-image { width: 120px; height: 120px; }
+    .profile-name { font-size: 1.2rem; }
+    .profile-role { font-size: 1rem; }
+}
     </style>
 </head>
 <body>
@@ -525,14 +641,14 @@
     
     <div class="gallery-container">
         <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0" data-percentage="0">
-            <img class="image" src="car1.png" draggable="false" data-description="Verstappen Aethereon" alt="Verstappen Aethereon"/>
-            <img class="image" src="car2.png" draggable="false" data-description="Verstappen Gravion" alt="Verstappen Gravion"/>
-            <img class="image" src="car3.png" draggable="false" data-description="Verstappen Helix GT" alt="Verstappen Helix GT"/>
-            <img class="image" src="car4.png" draggable="false" data-description="Verstappen Obsidian RS" alt="Verstappen Obsidian RS"/>
-            <img class="image" src="car5.png" draggable="false" data-description="Verstappen Xenonance" alt="Verstappen Xenonance"/>
-            <img class="image" src="car6.png" draggable="false" data-description="Verstappen Zephyros" alt="Verstappen Zephyros"/>
-            <img class="image" src="car7.png" draggable="false" data-description="Verstappen Oppressor" alt="Verstappen Oppressor"/>
-            <img class="image" src="car8.png" draggable="false" data-description="Verstappen Zentorno" alt="Verstappen Zentorno"/>
+            <img class="image" src="team.jpg" draggable="false" data-description="Meet Our Whole Team" alt="UiA Members"/>
+            <img class="image" src="project.jpeg" draggable="false" data-description="Project Managers" alt="Project Management Team"/>
+            <img class="image" src="docum.jpg" draggable="false" data-description="Documentations Team" alt="Our Documentations Team"/>
+            <img class="image" src="pr.jpg" draggable="false" data-description="Public Relations Team" alt="Our Public Relations Team"/>
+            <img class="image" src="leader.JPG" draggable="false" data-description="Meet Our Leaders" alt="Our Leaders"/>
+            <img class="image" src="pic.jpg" draggable="false" data-description="Our Board of Directors" alt="The People in Charge"/>
+            <img class="image" src="creative.jpg" draggable="false" data-description="Creative Team" alt="Creative Team"/>
+            <img class="image" src="team.jpg" draggable="false" data-description="Meet Our Whole Team" alt="UiA Members"/>
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-arrow-left"></i>
@@ -540,6 +656,139 @@
             <i class="fas fa-arrow-right"></i>
         </div>
     </div>
+    <section class="profiles-section">
+    <h2 class="section-title">Our Team</h2>
+
+    <div class="profile-grid teacher-profile">
+        <img src="white.png" alt="Teacher" class="profile-image">
+        <h3 class="profile-name">Margaretha Maria Rosyati</h3>
+        <p class="profile-role">Team Advisor</p>
+        <p class="profile-description">"Leading these brilliant minds has been one of my greatest privileges. Their dedication to creating positive change through engineering innovation continues to inspire me every day. Together, we're building not just projects, but the future."</p>
+    </div>
+    
+    <div class="section-divider"></div>
+
+    <h3 class="section-title" style="font-size: 2rem;">Leadership</h3>
+    <div class="profile-grid leaders-section">
+        <div class="profile-card">
+            <img src="white.png" alt="Team Leader" class="profile-image">
+            <h4 class="profile-name">Clarissa Abigail Chandra</h4>
+            <p class="profile-role">Team Leader</p>
+        </div>
+        <div class="profile-card">
+            <img src="white.png" alt="Co-Leader" class="profile-image">
+            <h4 class="profile-name">Devina Benlee</h4>
+            <p class="profile-role">Co-Leader</p>
+        </div>
+    </div>
+    
+    <div class="section-divider"></div>
+
+    <h3 class="section-title" style="font-size: 2rem;">Project Coordinators</h3>
+    <div class="profile-grid pics-section">
+        <div class="profile-card">
+            <img src="white.png" alt="PIC" class="profile-image">
+            <h4 class="profile-name">Bryant Azura Pang</h4>
+            <p class="profile-role">Research PIC</p>
+        </div>
+        <div class="profile-card">
+            <img src="white.png" alt="PIC" class="profile-image">
+            <h4 class="profile-name">Shayna Sutandi</h4>
+            <p class="profile-role">Documentation PIC</p>
+        </div>
+        <div class="profile-card">
+            <img src="white.png" alt="PIC" class="profile-image">
+            <h4 class="profile-name">Megan Emily Halim</h4>
+            <p class="profile-role">Events PIC</p>
+        </div>
+        <div class="profile-card">
+            <img src="white.png" alt="PIC" class="profile-image">
+            <h4 class="profile-name">Mischka Nikola Darnathan</h4>
+            <p class="profile-role">Events PIC</p>
+        </div>
+        <div class="profile-card">
+            <img src="white.png" alt="PIC" class="profile-image">
+            <h4 class="profile-name">Aurelia Leovaldi</h4>
+            <p class="profile-role">Design PIC</p>
+        </div>
+        <div class="profile-card">
+            <img src="white.png" alt="PIC" class="profile-image">
+            <h4 class="profile-name">Vereen Rheinia Jancenwiguna</h4>
+            <p class="profile-role">Public Relations PIC</p>
+        </div>
+    </div>
+    
+    <div class="section-divider"></div>
+
+    <h3 class="section-title" style="font-size: 2rem;">Web Builder Team</h3>
+    <div class="profile-grid builders-writers-section">
+        <div class="profile-card">
+            <img src="white.png" alt="Developer" class="profile-image">
+            <h4 class="profile-name">Albertus Surya Ananta</h4>
+            <p class="profile-role">Web Developer Leader</p>
+        </div>
+        <div class="profile-card">
+            <img src="white.png" alt="Developer" class="profile-image">
+            <h4 class="profile-name">Nathanael Anthony Haposan Pasaribu</h4>
+            <p class="profile-role">Web Developer</p>
+        </div>
+        <div class="profile-card">
+            <img src="white.png" alt="Developer" class="profile-image">
+            <h4 class="profile-name">Rhein Miracle Emmanuelle</h4>
+            <p class="profile-role">Web Developer</p>
+        </div>
+        <div class="profile-card">
+            <img src="white.png" alt="Developer" class="profile-image">
+            <h4 class="profile-name">Audrich Brandon Alexand</h4>
+            <p class="profile-role">Web Developer</p>
+        </div>
+    </div>
+    <div class="section-divider"></div>
+
+<h3 class="section-title" style="font-size: 2rem;">Web Design Team</h3>
+<div class="profile-grid builders-writers-section">
+    <div class="profile-card">
+        <img src="white.png" alt="Web Designer" class="profile-image">
+        <h4 class="profile-name">Aurelia Leovaldi</h4>
+        <p class="profile-role">Lead Web Designer</p>
+    </div>
+    <div class="profile-card">
+        <img src="white.png" alt="Web Designer" class="profile-image">
+        <h4 class="profile-name">Frederick Raoul Gunawan</h4>
+        <p class="profile-role">Web Designer</p>
+    </div>
+    <div class="profile-card">
+        <img src="white.png" alt="Web Designer" class="profile-image">
+        <h4 class="profile-name">Jennifer Angelina Gunawan</h4>
+        <p class="profile-role">Web Designer</p>
+    </div>
+    <div class="profile-card">
+        <img src="white.png" alt="Web Designer" class="profile-image">
+        <h4 class="profile-name">Felicia Roselind Hartanto</h4>
+        <p class="profile-role">Web Designer</p>
+    </div>
+    <div class="profile-card">
+        <img src="white.png" alt="Web Designer" class="profile-image">
+        <h4 class="profile-name">Keira Kona Mokalu</h4>
+        <p class="profile-role">Web Designer</p>
+    </div>
+    <div class="profile-card">
+        <img src="white.png" alt="Web Designer" class="profile-image">
+        <h4 class="profile-name">Carolus Dharma Harjuna</h4>
+        <p class="profile-role">Web Designer</p>
+    </div>
+    <div class="profile-card">
+        <img src="white.png" alt="Web Designer" class="profile-image">
+        <h4 class="profile-name">Audrey Michaila Winata</h4>
+        <p class="profile-role">Content Writer</p>
+    </div>
+    <div class="profile-card">
+        <img src="white.png" alt="Web Designer" class="profile-image">
+        <h4 class="profile-name">Victoria Lorraine Wibowo</h4>
+        <p class="profile-role">Content Writer</p>
+    </div>
+</div>
+</section>
     <footer class="footer">
         <div class="footer-col">
             <h4>Our Media</h4>
